@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+</head>
+<style>
+    ul,li{
+        margin: 0;
+        padding: 0;
+    }
+    #sec1{
+        width: 80px;
+        height: 30px;
+        margin-bottom: 50px;
+    }
+    #Box{
+        width: 400px;
+        height: 100px;
+        border: 1px solid red;
+        clear: both;
+        overflow: hidden;
+    }
+    #boxs>li{
+        width: 80px;
+        height: 80px;
+        margin: 10px;
+        list-style-type: none;
+        float: left;
+        color: forestgreen;
+        font-size: 40px;
+        text-align: center;
+        line-height: 80px;
+    }
+    #boxs{
+        width: 800px;
+        height: 100px;
+        margin-left: 0px;
+    }
+    .col1{
+        background-color: #ccff00;
+    }
+    .col2{
+        background-color: aqua;
+    }
+    .col3{
+        background-color: blueviolet;
+    }
+    .col4{
+        background-color: coral;
+    }
+</style>
+<body>
+    <select name="sec" id="sec1">
+        <option value="2">0.2</option>
+        <option value="5">0.5</option>
+        <option value="10">1</option>
+        <option value="20">2</option>
+    </select>
+    <div id="Box">
+        <ul id="boxs">
+            <li class="col1">1</li>
+            <li class="col2">2</li>
+            <li class="col3">3</li>
+            <li class="col4">4</li>
+            <li class="col1">1</li>
+            <li class="col2">2</li>
+            <li class="col3">3</li>
+            <li class="col4">4</li>
+        </ul>
+    </div>
+
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        var scoroll=document.getElementById("boxs");
+        var num=0;
+        var n=2;
+        var $sect=$("#sec1");
+
+        function move(){
+            num--;
+            if(num>=-400) {
+                scoroll.style.marginLeft = num + "px";
+            }
+            else{
+                num=0;
+                scoroll.style.marginLeft = num + "px";
+            }
+        }
+        var timer=setInterval(move,n);
+        $sect.click(sct);
+        function sct() {
+            clearInterval(timer);
+            timer=null;
+            var $optioned = $("#sec1 option:selected");
+            n = $optioned.val();
+            console.log(n);
+           timer=setInterval(move,n);
+        }
+    </script>
+</body>
+</html>
